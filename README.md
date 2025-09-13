@@ -1,8 +1,6 @@
-![logo]()
+
 <h1 align="center">Hi 👋, I'm Hemant-Patil</h1>
 <h3 align="center">A passionate frontend developer from India</h3>
-
-<img align="right"alt="coding"width="400"src="https://user
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=hemant-patil&label=Profile%20views&color=0e75b6&style=flat" alt="hemant-patil" /> </p>
 
