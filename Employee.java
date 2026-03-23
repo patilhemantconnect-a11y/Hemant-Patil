@@ -1,35 +1,56 @@
-import java.util.Scanner;
-
 class Employee {
 
+    String name;
+    String department;
 
-    private String employeeName;
-    private double employeeSalary;
-
- 
-    public void readEmployeeData() {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter Employee Name: ");
-        employeeName = sc.nextLine();
-
-        System.out.print("Enter Employee Salary: ");
-        employeeSalary = sc.nextDouble();
-    }
-
-    public void displayEmployeeData() {
-        System.out.println("\nEmployee Details");
-        System.out.println("Name: " + employeeName);
-        System.out.println("Salary: " + employeeSalary);
+   
+    Employee(String name, String department) {
+        this.name = name;
+        this.department = department;
     }
 
 
+    void displayDetails() {
+        System.out.println("Employee Name: " + name);
+        System.out.println("Department: " + department);
+    }
+}
+
+class Manager extends Employee {
+
+    int teamSize;
+    String projectName;
+
+    Manager(String name, String department, int teamSize, String projectName) {
+        super(name, department); 
+        this.teamSize = teamSize;
+        this.projectName = projectName;
+    }
+
+
+
+    void displayDetails() {
+        super.displayDetails(); 
+        System.out.println("Team Size: " + teamSize);
+        System.out.println("Project Name: " + projectName);
+    }
+}
+
+
+public class Main {
     public static void main(String[] args) {
 
-        Employee emp = new Employee();
+
+        Employee e1 = new Employee("Hemant", "CE");
 
 
-        emp.readEmployeeData();
-        emp.displayEmployeeData();
+        Employee e2 = new Manager("Ravi", "HR", 5, "Project Alpha");
+
+       
+        System.out.println("Employee Details:");
+        e1.displayDetails();
+
+        System.out.println("\nManager Details:");
+        e2.displayDetails(); 
     }
 }
