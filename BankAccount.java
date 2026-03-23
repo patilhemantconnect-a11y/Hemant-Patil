@@ -1,63 +1,52 @@
-import java.util.Scanner;
-
 class BankAccount {
 
-    String accountId;
-    String accountHolderName;
+    // Instance variables
+    String account_holder_name;
     double balance;
 
- 
-    void assignValues(String accountId, String accountHolderName, double balance) {
-        this.accountId = accountId;
-        this.accountHolderName = accountHolderName;
+    // Static variable (same for all accounts)
+    static double interest_rate;
+
+    // Constructor
+    BankAccount(String name, double balance) {
+        this.account_holder_name = name;
         this.balance = balance;
     }
-    void displayValues() {
-        System.out.println("Account ID: " + accountId);
-        System.out.println("Account Holder Name: " + accountHolderName);
-        System.out.println("Balance: " + balance);
-        System.out.println("---------------------------");
+
+    
+    double calculateInterest() {
+        return balance * interest_rate / 100;
     }
 
- 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        BankAccount[] accounts = new BankAccount[5];
+   
+    void displayInterest() {
+        double interest = calculateInterest();
+        System.out.println("Account Holder: " + account_holder_name);
+        System.out.println("Balance: " + balance);
+        System.out.println("Interest Earned: " + interest);
+        System.out.println();
+    }
 
    
-        for (int i = 0; i < accounts.length; i++) {
-            accounts[i] = new BankAccount();
-        }
+    static void updateInterestRate(double newRate) {
+        interest_rate = newRate;
+        System.out.println("Interest Rate Updated to: " + interest_rate + "%\n");
+    }
 
-        accounts[0].assignValues("A101", "Hemant", 5000);
-        accounts[1].assignValues("A102", "Om", 12000);
-        accounts[2].assignValues("A103", "Amit", 8000);
-        accounts[3].assignValues("A104", "Het", 15000);
-        accounts[4].assignValues("A105", "Meet", 6000);
+    public static void main(String[] args) {
 
-    
-        System.out.println("All Bank Accounts:");
-        for (BankAccount acc : accounts) {
-            acc.displayValues();
-        }
+        BankAccount.updateInterestRate(5);
 
-    
-        System.out.print("Enter Account ID to search: ");
-        String searchId = sc.nextLine();
 
-        boolean found = false;
+        BankAccount a1 = new BankAccount("Hemant", 10000);
+        BankAccount a2 = new BankAccount("Ravi", 20000);
 
-        for (BankAccount acc : accounts) {
-            if (acc.accountId.equals(searchId)) {
-                System.out.println("Account Found:");
-                acc.displayValues();
-                found = true;
-                break;
-            }
-        }
+        a1.displayInterest();
+        a2.displayInterest();
 
-        if (!found) {
-            System.out.println("Account not found.");
-        }
+        BankAccount.updateInterestRate(7);
+
+              a1.displayInterest();
+        a2.displayInterest();
     }
 }
